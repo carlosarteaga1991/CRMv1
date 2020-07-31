@@ -5,6 +5,8 @@ from django.db import models
 #si deseamos que en el panel de administración nos aparezca otros campos al visualizar una tabla ver el archivo
 #admin.py en el COMENTARIO#A1
 
+# comentario agregado el 31 de julio a las 2:35 pm para verificar q se cré corectamente
+
 class Clientes(models.Model):
     id_cliente = models.AutoField(primary_key=True)
     primer_nombre = models.CharField(max_length=30)
