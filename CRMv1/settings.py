@@ -122,15 +122,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-eu' #'en-us'
+LANGUAGE_CODE = 'es-hn' #'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Tegucigalpa'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False # ojo se cambio zona horaria a FALSE para que guarde la hora correcta de Honduras
 
 
 # Static files (CSS, JavaScript, Images)
