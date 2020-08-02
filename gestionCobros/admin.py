@@ -1,5 +1,5 @@
 from django.contrib import admin
-from gestionCobros.models import Puestos, Departamentos, Usuarios
+from gestionCobros.models import Puestos, Departamentos, Usuarios, prueba
 #Clientes, Gestiones, Codigos,Motivos,Recordatorios
 
 # Register your models here.
@@ -31,3 +31,4 @@ admin.site.register(Recordatorios)
 admin.site.register(Puestos)
 admin.site.register(Departamentos)
 admin.site.register(Usuarios)
+admin.site.register(prueba)

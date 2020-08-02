@@ -1,6 +1,6 @@
 from django.db import models
 
-# Modificación de modelos con relaciones realzada el 1 de agosto del 2020 a las 11:42 am
+# Modificación de modelos con relaciones realzada el 2 de agosto del 2020 a las 12:42 pm
 
 # se crearán 14 tablas relacionadas conectándose a MYSQL
 # las tablas seran:
@@ -83,4 +83,12 @@ class Usuarios(models.Model):
         ordering = ['primer_nombre']
 
 
-    
+class prueba(models.Model):
+    id_prueba = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=35)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name_plural = "PruebaHub"
