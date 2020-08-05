@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'CRMv1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # es la q contiene la ruta de nuestros templates ejemplo CRMv1\\templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +139,8 @@ USE_TZ = False # ojo se cambio zona horaria a FALSE para que guarde la hora corr
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#para agregar archivos estáticos hay que agregar:
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]

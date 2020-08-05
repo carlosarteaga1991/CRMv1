@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from gestionCobros.views import Vistauno,Vistados
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('vistas/', Vistauno, name='v1'),
+    path('second/',Vistados, name='v2')
 ]

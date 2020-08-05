@@ -1,5 +1,7 @@
 from django.contrib import admin
 from gestionCobros.models import Puestos, Departamentos, Usuarios, Empresas, Clientes, Contactos, Productos, Recordatorios, Codigos, Motivos, Gestiones, Promesas, Pagos, LogCobros
+
+# se puede agregar también from gestionCobros.models import *
 #Clientes, Gestiones, Codigos,Motivos,Recordatorios
 
 # Register your models here.

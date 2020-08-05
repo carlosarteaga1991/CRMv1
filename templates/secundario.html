@@ -1,0 +1,16 @@
+{% extends  "index.html" %}
+
+
+{% block bloqueuno %}
+    <p>    este es el hijo la vista número dos</p>
+{% endblock %}    
+
+{% block cambiando %}
+
+    <ul>
+        {% for d in dep %}
+            <li>{{d.nombre}}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock  %}
