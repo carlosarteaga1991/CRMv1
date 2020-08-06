@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from gestionCobros.views import Vistauno,Vistados
+from gestionCobros.views.views import *
+#Vistauno,Vistados,departamento_lista
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('vistas/', Vistauno, name='v1'),
-    path('second/',Vistados, name='v2')
+    #path('vistas/', Vistauno, name='v1'),
+    #path('second/',Vistados, name='v2'),
+    path('departamento/listar',dep_lista.as_view(), name='v3') #aquí lo que hacemos es llamar una clase vista para usarla en una plantilla
 ]

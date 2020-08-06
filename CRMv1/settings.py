@@ -57,7 +57,7 @@ ROOT_URLCONF = 'CRMv1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], # es la q contiene la ruta de nuestros templates ejemplo CRMv1\\templates
+        'DIRS': [os.path.join(BASE_DIR, 'templates_base'), os.path.join(BASE_DIR, 'gestionCobros/templates_tablas')], # es la q contiene la ruta de nuestros templates ejemplo CRMv1\\templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

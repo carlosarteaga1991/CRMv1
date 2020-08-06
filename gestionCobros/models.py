@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import model_to_dict
 
 # Modificación de modelos con relaciones realzada 
 # el 2 de agosto del 2020 a las 5:22 pm
@@ -35,6 +36,10 @@ class Departamentos(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
 
     class Meta:
         verbose_name_plural = "Departamentos"

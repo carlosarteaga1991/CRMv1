@@ -1,0 +1,108 @@
+{% extends "home.html" %}
+{% load static %}
+
+<!-- agregamnos la librería para usar el DataTable la librería -->
+{% block head %}
+    <link rel="stylesheet" href="{% static 'lib/DataTables/DataTables-1.10.21/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/DataTables/DataTables-1.10.21/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'lib/DataTables/DataTables-1.10.21/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/DataTables/DataTables-1.10.21/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/DataTables/DataTables-1.10.21/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+    <!-- esto es para botones pero falta hay q investigar mas-->
+    <!-- https://www.youtube.com/watch?v=yaOnkcEBl18-->
+    <!--<script src="{% static 'lib/DataTables/Buttons-1.6.3/js/dataTables.buttons.js' %}"></script>-->
+    <script src="{% static 'lib/DataTables/Buttons-1.6.3/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'lib/DataTables/DataTables-1.10.21/plugins/jszip-2.5.0/jszip.min.js' %}"></script>
+    <!--<script src="{% static 'lib/DataTables/DataTables-1.10.21/plugins/pdfmake-0.1.36/pdfmake.min.js' %}"></script>   ojo verificar ya q da error-->
+    <script src="{% static 'lib/DataTables/DataTables-1.10.21/plugins/pdfmake-0.1.36/vfs_fonts.js' %}"></script>
+    <script src="{% static 'lib/DataTables/Buttons-1.6.3/js/buttons.html5.min.js' %}"></script>
+
+    <!--<script src="{% static 'lib/DataTables/Buttons-1.6.3/js/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/DataTables/Buttons-1.6.3/js/buttons.html5.js' %}"></script>-->
+{% endblock  %}
+
+{% block contenido %}
+    <div class="card card-default">
+                <div class="card-footer" >
+                    <button class="btn btn-primary btn-flat btn-nuevo-registro" style="border-radius: 5px;">
+                        <i class="fas fa-plus"></i> Nuevo registro
+                    </button>
+                </div>
+              <!--<div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-search"></i>
+                  {{title}}
+                </h3>
+              </div>-->
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table" id="example">
+                    <thead>
+
+                    {% block columnas %}
+                        <!-- aquí va el contenido de cada tabla pasada x medio de una clase -->
+                    {% endblock  %}
+
+                    </thead>
+                    <tbody>
+
+                        {% block filas %}
+                            <!-- aquí va el contenido de cada tabla pasada x medio de una clase -->
+                        {% endblock  %}
+
+                    </tbody>
+                    </table>
+              </div>
+              <!-- /.card-body -->
+
+                
+
+    </div>
+{% endblock  %}
+
+
+{% block javascript %}
+    <script type="application/javascript">
+        $(document).ready(function() {
+            $('#example').DataTable({
+                responsive: true,
+                autoWidth: false,
+                "language": {
+                    url : '{% static 'lib/DataTables/DataTables-1.10.21/spanish.txt' %}'
+                },
+
+                dom: 'Bfrtilp',
+                buttons: [
+                    {extens: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'},
+
+                    {extens: 'pdfHtml5',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'}
+
+                ]
+            });
+
+            //evento para boton agregar nuevo registro
+            $('.btn-nuevo-registro').on('click', function () {
+                $.ajax({
+                    url: '{% url 'v3' %}',
+                    type: 'POST',
+                    data: {id_departamento: 2},
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(data);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+': '+errorThrown);
+                }).always(function (data) {
+
+                });
+            });
+        });
+    </script>
+{% endblock %}
