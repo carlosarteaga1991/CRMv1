@@ -1,0 +1,40 @@
+{% extends "list.html" %}
+
+ {% block columnas %}
+    <tr>
+    <th scope="col" style="width: 3%;">Id</th>
+    <th scope="col" style="width: 12%;">Nombre</th>
+    <th scope="col" style="width: 5%;">Usuario</th>
+    <th scope="col" style="width: 13%;">Departamento</th>
+    <th scope="col" style="width: 9%;">Puesto</th>
+    <th scope="col" style="width: 9%;">Estado</th>
+    <!--<th scope="col" style="width: 8%;">Última Modificación</th>-->
+    <th scope="col" style="width: 5%;">Opciones</th>
+    </tr>
+{% endblock  %}
+
+
+{% block filas %}
+    {% for d in object_list %}
+        <tr>
+            <td>{{d.id_usuario}}</td>
+            <td>{{d.primer_nombre}} {{d.segundo_nombre}} {{d.primer_apellido}} {{d.segundo_apellido}}</td>
+            <td>{{d.id_usuario}}</td>
+            <td>{{d.id_departamento}}</td>
+            <td>{{d.id_puesto}}</td>
+            <td>{% if d.estado == '1' %}
+                    Activo
+                {% else %}
+                    Inactivo
+                {% endif %}</td>
+            <!--<td>{{d.fch_creacion}}</td>
+            <td>{{d.usuario_creacion}}</td>
+            <td>{{d.fch_modificacion}}</td>-->
+            <td>
+                <button type="button" title="Editar" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                <button type="button" title="Borrar" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>    
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock  %}
+

@@ -27,7 +27,7 @@ Log_Cobros
 
 class Departamentos(models.Model):
     id_departamento = models.AutoField(primary_key=True)
-    nombre = models.CharField('Nombre Departamento',max_length=100)
+    nombre = models.CharField('Nombre',max_length=100)
     fch_creacion = models.DateTimeField(auto_now_add=True)
     usuario_creacion = models.IntegerField()
     fch_modificacion = models.CharField(max_length=35, blank=True)
@@ -64,22 +64,22 @@ class Puestos(models.Model):
 
 class Usuarios(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-    primer_nombre = models.CharField(max_length=35)
-    segundo_nombre = models.CharField(max_length=35,blank=True) # verificar si no es obligatorio sino agregar, null=True
-    primer_apellido = models.CharField(max_length=35)
-    segundo_apellido = models.CharField(max_length=35, blank=True)
-    usuario = models.CharField(max_length=20,help_text="Ejemplo: nombre.apellido")
-    correo = models.EmailField()
-    telefono = models.IntegerField()
-    id_departamento = models.ForeignKey(Departamentos, on_delete=models.PROTECT)
-    id_puesto = models.ForeignKey(Puestos, on_delete=models.PROTECT)
-    fch_ultimo_acceso = models.DateTimeField()
-    ip_ultimo_acceso = models.CharField(max_length=50)
+    primer_nombre = models.CharField('Primer Nombre',max_length=35)
+    segundo_nombre = models.CharField('Segundo Nombre',max_length=35,blank=True) # verificar si no es obligatorio sino agregar, null=True
+    primer_apellido = models.CharField('Primer Apellido',max_length=35)
+    segundo_apellido = models.CharField('Segundo Apellido',max_length=35, blank=True)
+    usuario = models.CharField('Usuario',max_length=20)#help_text="Ejemplo: nombre.apellido"
+    correo = models.EmailField('Email')
+    telefono = models.IntegerField('Teléfono')
+    id_departamento = models.ForeignKey(Departamentos, on_delete=models.PROTECT)#,'Departamento Asigando'
+    id_puesto = models.ForeignKey(Puestos, on_delete=models.PROTECT)#,'Puesto a Desempeñar'
+    fch_ultimo_acceso = models.CharField(max_length=35,blank=True)
+    ip_ultimo_acceso = models.CharField(max_length=50, blank=True)
     fch_creacion = models.DateTimeField(auto_now_add=True)
-    usuario_creacion = models.IntegerField()
+    usuario_creacion = models.IntegerField(blank=True, null=True)
     fch_modificacion = models.CharField(max_length=35, blank=True)
     usuario_modificacion = models.IntegerField(blank=True,null=True)
-    estado = models.CharField(max_length=1, default='1',choices=[('1','Activo'),('2','Inactivo')])
+    estado = models.CharField('Estado',max_length=1, default='1',choices=[('1','Activo'),('2','Inactivo')])
 
     def __str__(self):
         return self.primer_nombre + " " + self.segundo_nombre + " " + self.primer_apellido + " " + self.segundo_apellido
