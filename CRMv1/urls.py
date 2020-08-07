@@ -14,14 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from gestionCobros.views.views import *
-#Vistauno,Vistados,departamento_lista
-
-
+from django.urls import path, include
+#
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('vistas/', Vistauno, name='v1'),
-    #path('second/',Vistados, name='v2'),
-    path('departamento/listar',dep_lista.as_view(), name='v3') #aquí lo que hacemos es llamar una clase vista para usarla en una plantilla
+    path('departamento/',include('gestionCobros.urls'))
 ]
+

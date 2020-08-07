@@ -1,37 +1,16 @@
 
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
-from gestionCobros.models import Clientes, Departamentos
+from django.urls import reverse_lazy,reverse
+from django.views.generic import ListView,CreateView
 
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.contrib.auth.decorators import login_required
+from gestionCobros.views.forms import dep_form
+from gestionCobros.models import Clientes, Departamentos
 #para decoradores en python
-
-
-
-
-
-"""
-def Vistauno(request):
-    data1={"cliente":Clientes.objects.all()}
-    return render(request,'home.html', data1) 
-
-
-def Vistados(request):
-    dato1 = { 'dep': Departamentos.objects.all()}
-    return render(request, 'secundario.html',dato1)
-    from django.shortcuts import render
-
-
-def departamento_lista(request):
-    data = {'title': 'Listado de departamentos',
-    'dep': Departamentos.objects.all()}
-    return render(request, 'departamento/listar.html', data)
-"""
-#vistas basadas en clases
-
+#
 class dep_lista(ListView):
     model = Departamentos  # le decimo que el modelo es la tabla Departamento
     template_name = 'departamento/listar.html' # le decimos a esta variable donde está
@@ -53,5 +32,18 @@ class dep_lista(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) # x defecto
         context['title'] = 'Listado de Departamentos'
+        #print(reverse_lazy('v3'))
         return context
 
+class dep_crear(CreateView):
+    model = Departamentos
+    form_class = dep_form
+    template_name = 'departamento/create.html'
+    success_url = reverse_lazy('v3') #esto una vez q se guardó el registro que vuelva atrás o le decimos a donde lo envíe
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) # x defecto
+        context['title'] = 'Crear Departamento'
+        return context

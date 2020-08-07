@@ -27,7 +27,7 @@ Log_Cobros
 
 class Departamentos(models.Model):
     id_departamento = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField('Nombre Departamento',max_length=100)
     fch_creacion = models.DateTimeField(auto_now_add=True)
     usuario_creacion = models.IntegerField()
     fch_modificacion = models.CharField(max_length=35, blank=True)

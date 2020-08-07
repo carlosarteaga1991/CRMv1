@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+
+{% block contenido %}
+
+    <form method = "post" action=".">
+        <div class="card card-default">
+            <!--<div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-search"></i>
+                  {{title}}
+                </h3>
+              </div>-->
+              <!-- /.card-header -->
+              <div class="card-body">
+                {% csrf_token %}
+                {{ form }}
+              </div>
+
+              <div class="card-footer" >
+                    <button type="submit" class="btn btn-primary btn-flat btn-nuevo-registro" style="border-radius: 5px;">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+
+    </div>
+    </form>
+
+    
+{% endblock  %}
